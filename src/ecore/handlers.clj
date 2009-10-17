@@ -1,5 +1,6 @@
 ;; handlers
 ;;;add polymorphism to all
+(comment 
 (ns ecore.handlers
   (:use 
     ecore.utils.genutils clojure.contrib.condition
@@ -30,7 +31,7 @@
   "Gets the site.
 Types:
 (1) String id for view in current page
-(3) Object
+ (3) Object
 (4) not given, uses active part
 Return: IPartSite or nil" dispatch-class-or-else)
 (defmethod get-site String [id]
@@ -97,7 +98,7 @@ Return: IPartSite or nil" dispatch-class-or-else)
 (defn get-command [service str]
   #^Command (.getCommand service str))
 (defn create-command [service str & args]
-  (define (get-command service str] args)))
+  (define (get-command service str) args))
 (defn create-command-if [service str & args]
    (aif (get-command service str)
      it
@@ -123,5 +124,5 @@ Return: IPartSite or nil" dispatch-class-or-else)
       (get-shell this) "HI" *warning*)
     nil))
 
-
+)
 

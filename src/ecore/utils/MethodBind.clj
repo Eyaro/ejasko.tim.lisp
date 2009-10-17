@@ -1,3 +1,5 @@
+(comment
+;;I will probably delete this, it is deprecated maybe.
 (ns ecore.utils.methods (:use ecore.utils.genutils))
 (import (java.lang.reflect Modifier Method) (org.eclipse.core.commands ExecutionEvent))
 
@@ -25,3 +27,4 @@
        
        
        (map as-lisp-name (map :name (get-public-methods ExecutionEvent "toString")))
+)

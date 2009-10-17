@@ -3,7 +3,7 @@
   (:gen-class
     :implements [org.eclipse.jface.text.source.ICharacterPairMatcher]
     :state state
-    :init init
+    :init init 
     :methods [[setPainter [org.eclipse.jface.text.source.MatchingCharacterPainter] void]])
   (:use ecore.utils.genutils
         [ecore.env 
