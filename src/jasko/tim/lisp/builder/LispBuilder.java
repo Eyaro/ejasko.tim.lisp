@@ -619,7 +619,6 @@ public class LispBuilder extends IncrementalProjectBuilder {
 			try {
 				IFile file = (IFile) resource;
 				LispMarkers.deleteCompileMarkers(file, offset, length);								
-				System.out.println("*builder*");
 				boolean paren = checkParenBalancing(file);
 				LispNode code = LispParser.parse(file);
 				boolean pack = checkPackageDependence(code,file);

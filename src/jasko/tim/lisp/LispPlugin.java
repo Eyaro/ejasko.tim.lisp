@@ -476,6 +476,7 @@ public class LispPlugin extends AbstractUIPlugin {
 	
 	public static String setSharedLibPaths (ProcessBuilder pb,int limit) {
 		List<File> dirs = getSharedLibPaths(new File(PreferenceInitializer.getStore().getString(PreferenceConstants.SYSTEMS_SHARED_PATH)),limit);
+		dirs=null;
 		if (dirs==null) {
 			return "";
 		}
@@ -487,20 +488,15 @@ public class LispPlugin extends AbstractUIPlugin {
 		
 		String prevEnv = pb.environment().get("Path").trim();
 		
-		if (prevEnv!=null) {
-			if (prevEnv.endsWith(systemSeparator)) {
-				paths=prevEnv+paths;
-			} else {
-				paths=prevEnv+systemSeparator+paths;
-			}
-		}
+		paths+=systemSeparator+prevEnv;
+		
 		System.out.println("Adding to the Path Variable: "+paths);
 		pb.environment().put("Path",paths);
 		return paths;
 	}
 	
 	public static ArrayList<File> getSharedLibPaths (File initialDir,int limit) {
-		if (!initialDir.isDirectory ()||initialDir==null||initialDir.exists()) {
+		if (!initialDir.isDirectory ()||initialDir==null) {
 			return null;
 		}
 		File[] dirs = initialDir.listFiles(new FileFilter () {
