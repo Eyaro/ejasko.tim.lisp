@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry exported="true" kind="lib" path="classes" sourcepath="src/script2"/>
+	<classpathentry kind="var" path="ECLIPSE_HOME"/>
+	<classpathentry kind="lib" path="clojure-1.0.0-2009-08-13.jar"/>
+	<classpathentry kind="lib" path="clojure-contrib-1.0.0-2009-08-13.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
