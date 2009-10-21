@@ -200,7 +200,17 @@ public class IndentAction extends LispAction {
 					if (monitor==null) {
 						doc.replace(lineInfo.getOffset(), indentOld,indent);
 					} else {
-					Display.getDefault().syncExec(new Runnable () {
+						Display.getDefault().syncExec(new Runnable () {
+							public void run() {
+								try {
+									statDoc.replace(lineInfo.getOffset(), indentOld,indent);
+								} catch (BadLocationException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+							}
+						});
+				/*	Display.getDefault().syncExec(new Runnable () {
 
 						
 						public void run() {
@@ -212,7 +222,7 @@ public class IndentAction extends LispAction {
 							}
 						}
 						
-					});
+					});*/
 					}
 					
 				}
@@ -274,7 +284,7 @@ public class IndentAction extends LispAction {
 			indents = null;
 			result = doIndentHelper(offset,length,doc,i0,monitor,indents);	
 			
-		}
+		} 
 		
 		public int[] getResult () {return result;}	
 		public void makeProgressMonitor () {
@@ -303,7 +313,7 @@ public class IndentAction extends LispAction {
 		}
 	}
 	
-	
+	static int[] result;
 	public static int[] doIndent(int offset, int length, IDocument doc, int i0){
 
 		int lastLine=-1;
@@ -318,12 +328,13 @@ public class IndentAction extends LispAction {
 		if (firstLine!=-1&&lastLine-firstLine+1<=150) {
 			return doIndentHelper(offset,length,doc,i0,null,null);
 		}
-		RunnableStatic runnable = 	new RunnableStatic (offset,length,i0,doc);
+		final RunnableStatic runnable = 	new RunnableStatic (offset,length,i0,doc);
+		result = runnable.start();
 		//calculating indents
-		int[] result = runnable.start();
+	
 		
 		//doing the actual indents
-		final ArrayList<IndentReplacement> indents = runnable.indents;
+		//final ArrayList<IndentReplacement> indents = runnable.indents;
 			
 			
 

@@ -13,6 +13,19 @@ import org.eclipse.swt.widgets.*;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
+
+/**
+* This code was edited or generated using CloudGarden's Jigloo
+* SWT/Swing GUI Builder, which is free for non-commercial
+* use. If Jigloo is being used commercially (ie, by a corporation,
+* company or business for any purpose whatever) then you
+* should purchase a license for each developer using Jigloo.
+* Please visit www.cloudgarden.com for details.
+* Use of Jigloo implies acceptance of these licensing terms.
+* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
+* THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
+* LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
+*/
 public class AutoEditsPreferencePage extends PreferencePage implements
 		IWorkbenchPreferencePage {
 
@@ -55,35 +68,45 @@ public class AutoEditsPreferencePage extends PreferencePage implements
 		//Create a data that takes up the extra space in the dialog and spans both columns.
 		data = new GridData(GridData.FILL_BOTH | GridData.VERTICAL_ALIGN_BEGINNING);
 		buttonComposite.setLayoutData(data);		
+		{
+			Button removeButton = new Button(buttonComposite, SWT.PUSH | SWT.CENTER);
+			GridData data1 = new GridData();
+			data1.horizontalSpan = 2;
+			data1.verticalAlignment = GridData.BEGINNING;
+			removeButton.setText("Remove Selection"); //$NON-NLS-1$
+			removeButton.addSelectionListener(new SelectionAdapter() {
+				public void widgetSelected(SelectionEvent event) {
+					if (autoEditsList.getSelectionIndex()>0) {
+						autoEditsList.remove(autoEditsList.getSelectionIndex());
+					}
+				}
+			});
+			removeButton.setLayoutData(data1);
+		}
+		{
+			newEntryText = new Text(buttonComposite, SWT.MULTI | SWT.BORDER);
+			GridData data2 = new GridData();
+			data2.grabExcessHorizontalSpace = true;
+			data2.horizontalSpan = 2;
+			data2.verticalAlignment = GridData.FILL;
+			data2.grabExcessVerticalSpace = true;
+			data2.horizontalAlignment = GridData.FILL;
+			newEntryText.setLayoutData(data2);
+		}
 		
 		Button addButton = new Button(buttonComposite, SWT.PUSH | SWT.CENTER);
 
+		GridData addButtonLData = new GridData();
+		addButtonLData.verticalAlignment = GridData.BEGINNING;
+		addButton.setLayoutData(addButtonLData);
 		addButton.setText("Add to List"); //$NON-NLS-1$
 		addButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
 				autoEditsList.add(newEntryText.getText(), autoEditsList.getItemCount());
 			}
 		});
-		
-		newEntryText = new Text(buttonComposite, SWT.BORDER);
-		//Create a data that takes up the extra space in the dialog .
-		data = new GridData(GridData.FILL_HORIZONTAL);
-		data.grabExcessHorizontalSpace = true;
-		newEntryText.setLayoutData(data);
-		
-		
-		Button removeButton = new Button(buttonComposite, SWT.PUSH | SWT.CENTER);
 
-		removeButton.setText("Remove Selection"); //$NON-NLS-1$
-		removeButton.addSelectionListener(new SelectionAdapter() {
-			public void widgetSelected(SelectionEvent event) {
-				autoEditsList.remove(autoEditsList.getSelectionIndex());
-			}
-		});
-		
-		data = new GridData();
-		data.horizontalSpan = 2;
-		removeButton.setLayoutData(data);
+		//Create a data that takes up the extra space in the dialog .
 
 		return entryTable;
 	}
@@ -92,7 +115,7 @@ public class AutoEditsPreferencePage extends PreferencePage implements
 	 * @see IWorkbenchPreferencePage#init(IWorkbench)
 	 */
 	public void init(IWorkbench workbench) {
-		//Initialize the preference store we wish to use
+		//Initialise the preference store we wish to use
 		setPreferenceStore(LispPlugin.getDefault().getPreferenceStore());
 		setDescription("AutoEdits allows automatic substituion as you type.\n" +
 				"They consist of two parts: trigger and substitution.\n" +

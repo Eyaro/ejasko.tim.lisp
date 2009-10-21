@@ -7,5 +7,6 @@
 	<classpathentry kind="var" path="ECLIPSE_HOME"/>
 	<classpathentry kind="lib" path="clojure-1.0.0-2009-08-13.jar"/>
 	<classpathentry kind="lib" path="clojure-contrib-1.0.0-2009-08-13.jar"/>
+	<classpathentry kind="con" path="org.dyno.visual.swing.VS_LIBRARY/layoutext"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
