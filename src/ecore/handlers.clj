@@ -1,5 +1,30 @@
 ;; handlers
 ;;;add polymorphism to all
+(ns ecore.handlers)
+(defmacro new-handler-class
+  [classname-sym event & body]
+  (let [classname        (name classname-sym)
+        last-dot         (.lastIndexOf classname ".")
+        simple-classname (if (not= last-dot -1)
+                           (.substring classname (inc last-dot))
+                           classname)
+        prefixed         #(symbol (str simple-classname "-" %))
+        hinted-this      (with-meta 'this {:tag classname-sym})]
+    `(do
+       (gen-class
+         :name    ~classname-sym
+         :extends org.eclipse.core.commands.AbstractHandler
+         :prefix  ~(symbol (str simple-classname "-"))
+         :init    ~'init
+         :main    false)
+       (defn ~(prefixed "init")
+         []
+         [[] []])
+       (defn ~(prefixed "execute")
+         [~hinted-this ~event]
+         ~@body))))
+
+         
 (comment 
 (ns ecore.handlers
   (:use 

@@ -33,7 +33,7 @@ import org.eclipse.ui.editors.text.*;
  *  editor a Lisp editor.
  * @author Tim Jasko
  *
- */
+ */ 
 public class LispConfiguration extends TextSourceViewerConfiguration {
 	protected RuleBasedScanner tagScanner;
 	
