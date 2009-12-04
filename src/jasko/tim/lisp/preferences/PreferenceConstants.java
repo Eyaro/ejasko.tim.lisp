@@ -29,6 +29,7 @@ public interface PreferenceConstants {
 	
 	public static final String LISP_EXE = "lispExecutable";
 	public static final String LISP_INI = "lispIni";
+	public static final String SWANK_LOADER = "swankLoader";
 	//public static final String USE_SITEWIDE_LISP = "usePluginLisp";
 	/**
 	 * 	this preference should be accessed only through 

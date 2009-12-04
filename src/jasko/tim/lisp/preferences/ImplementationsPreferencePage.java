@@ -78,7 +78,9 @@ public class ImplementationsPreferencePage extends FieldEditorPreferencePage
 		addField(new FileFieldEditor(PreferenceConstants.LISP_INI, 
 				"&Initialization File:", parent));
 
-
+		addField(new FileFieldEditor(PreferenceConstants.SWANK_LOADER, 
+				"&Swank Loader File:", parent));
+		
 		RadioGroupFieldEditor lispType = new RadioGroupFieldEditor(PreferenceConstants.LISP_TYPE, "Lisp Type", 1, 
 				new String[][] {
 				  { "SBCL", PreferenceConstants.SBCL_LISP },

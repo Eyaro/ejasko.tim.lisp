@@ -442,7 +442,18 @@ public class SwankInterface {
 			}
 
 			String pluginDir = LispPlugin.getDefault().getPluginPath();
-			String slimePath = pluginDir + "slime/swank-loader.lisp";
+			
+			String slimePath = "";
+				
+			if (prefStore.getString(PreferenceConstants.SWANK_LOADER).length() > 0)
+			{
+				slimePath = prefStore.getString(PreferenceConstants.SWANK_LOADER);
+			}
+			else
+			{
+				 slimePath = pluginDir + "slime/swank-loader.lisp";
+			}
+			
 			if (implementation != null) {
 				try {
 					lispEngine = implementation.startLisp(slimePath, port);
